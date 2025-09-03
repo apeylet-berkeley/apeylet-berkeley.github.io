@@ -1,226 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CS180 — Project 0 · Becoming Friends with Your Camera</title>
-  <meta name="description" content="Project 0 CS180: three scenes to understand perspective, focal length/zoom, and projection center. Aesthetic page ready for GitHub Pages & PDF." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #0b0c10;
-      --panel: #121318;
-      --panel-2:#161821;
-      --text: #f5f7fb;
-      --muted:#c9cfe1;
-      --brand:#7aa2ff;
-      --brand-2:#a07aff;
-      --accent:#7af0cb;
-      --ring: rgba(122,162,255,.45);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:
-        radial-gradient(80vw 50vh at 10% -10%, rgba(122, 162, 255, .08), transparent 60%),
-        radial-gradient(60vw 50vh at 110% 10%, rgba(122, 240, 203, .07), transparent 60%),
-        linear-gradient(180deg, #0a0b10 0%, #0b0c10 100%);
-      color:var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      line-height:1.6;
-    }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1100px; margin:0 auto; padding:32px 20px}
-
-    header{
-      position:sticky; top:0; z-index:20; backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(11,12,16,.9) 60%, rgba(11,12,16,.75));
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .topbar{display:flex; align-items:center; gap:16px; padding:14px 20px; max-width:1100px; margin:0 auto}
-    .logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 6px rgba(122,162,255,.08)}
-    .title{font-weight:800; letter-spacing:.2px}
-    nav{margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
-    nav a{padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.02)}
-
-    .hero{padding:64px 0 24px}
-    h1{font-family:"Playfair Display"; font-weight:700; font-size:clamp(32px, 3.6vw, 48px); line-height:1.15; margin:0 0 8px}
-    .subtitle{color:var(--muted); font-size:clamp(15px, 1.4vw, 18px)}
-    .meta{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px}
-    .tag{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); color:var(--muted)}
-
-    section{margin:28px 0}
-    .card{background:linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:22px}
-    h2{font-family:"Playfair Display"; font-size:clamp(24px, 2.4vw, 32px); margin:0 0 8px}
-    h3{font-size:clamp(18px, 1.6vw, 22px); margin:0 0 12px}
-    .lead{color:var(--muted)}
-
-    .grid{display:grid; gap:14px}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    @media (max-width: 860px){ .grid.cols-3{grid-template-columns:1fr 1fr} }
-    @media (max-width: 640px){ .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} }
-
-    figure{margin:0; border-radius:16px; overflow:hidden; position:relative; background:#0d0f15; border:1px solid rgba(255,255,255,.06)}
-    figure img, figure video{display:block; width:100%; height:100%; object-fit:cover}
-    figcaption{position:absolute; left:10px; bottom:10px; font-size:13px; background:rgba(0,0,0,.45); padding:6px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.15)}
-
-    .lightbox{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.75); z-index:50}
-    .lightbox.open{display:grid}
-    .lightbox-img{max-width:92vw; max-height:86vh; border-radius:14px; border:1px solid rgba(255,255,255,.15); box-shadow:0 20px 60px rgba(0,0,0,.6)}
-    .lightbox .close{position:absolute; top:18px; right:18px; padding:10px 12px; border-radius:999px; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.15); color:#fff}
-
-    .callout{border-left:4px solid var(--brand); background:rgba(122,162,255,.08); padding:14px; border-radius:8px; color:#dfe6ff}
-    .callout b{color:#fff}
-
-    footer{margin:42px 0 20px; color:var(--muted); text-align:center}
-
-    @media print{
-      header{position:static; backdrop-filter:none}
-      nav{display:none}
-      body{background:#fff; color:#111}
-      .card{border:1px solid #ddd}
-      .lightbox{display:none !important}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS180 Project 0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b0c10;--text:#f4f6fb;--muted:#c9cfe1;--panel:#13151b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial}
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 18px}
+  h1{font-size:clamp(26px,3.4vw,40px);margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 18px}
+  section{margin:24px 0}
+  .block{background:var(--panel);border-radius:14px;padding:18px}
+  h2{margin:0 0 10px;font-size:clamp(18px,2vw,24px)}
+  p{margin:8px 0 16px;color:var(--muted)}
+  .grid{display:grid;gap:12px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g3{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.g3,.g2{grid-template-columns:1fr}}
+  figure{margin:0;border-radius:12px;overflow:hidden;background:#0f1117}
+  img,video{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
+  .note{font-size:14px;color:var(--muted);margin-top:6px}
+</style>
 </head>
 <body>
-  <!-- Student: Your Name — SID: XXXXXXXX — Email: you@berkeley.edu -->
+<main class="wrap">
+  <h1>CS180 Project 0</h1>
+  <p class="sub">Antoine Peylet · SID 3041919884</p>
 
-  <header>
-    <div class="topbar">
-      <div class="logo" aria-hidden="true"></div>
-      <div class="title">CS180 — Project 0</div>
-      <nav aria-label="Sections">
-        <a href="#overview">Overview</a>
-        <a href="#part1">Part 1</a>
-        <a href="#part2">Part 2</a>
-        <a href="#part3">Part 3</a>
-        <a href="#credits">Credits</a>
-      </nav>
+  <section class="block">
+    <h2>Part 1</h2>
+    <p>Close wide-angle vs backed-up with zoom. Three images.</p>
+    <div class="grid g3">
+      <figure><img src="media/part1/selfie-close.jpg" alt="Close wide-angle"></figure>
+      <figure><img src="media/part1/portrait-zoom.jpg" alt="Backed up + zoom"></figure>
+      <figure><img src="media/part1/variation.jpg" alt="Variation"></figure>
     </div>
-  </header>
+  </section>
 
-  <main class="wrap">
-    <section id="overview" class="hero">
-      <h1>Becoming Friends with Your Camera</h1>
-      <p class="subtitle">Understand <b>perspective</b>, <b>focal length/zoom</b> and <b>projection center</b> through three mini-shoots. Aesthetic, responsive page ready for PDF export.</p>
-      <div class="meta">
-        <span class="tag">CS180 • Fall 2025</span>
-        <span class="tag">Project 0</span>
-        <span class="tag">GitHub Pages Ready</span>
-      </div>
-    </section>
+  <section class="block">
+    <h2>Part 2</h2>
+    <p>Far + zoom vs close + wide. Two images.</p>
+    <div class="grid g2">
+      <figure><img src="media/part2/street-tele.jpg" alt="Far + zoom"></figure>
+      <figure><img src="media/part2/street-wide.jpg" alt="Close + wide"></figure>
+    </div>
+  </section>
 
-    <section class="card">
-      <h2>Instructions Followed Precisely</h2>
-      <p class="lead">This page contains three blocks: (1) selfie near vs far (back up + zoom), (2) compressed vs widened perspective, (3) a <em>dolly zoom</em> GIF/video. Assets are placed as you requested: <b>3 images first</b>, <b>2 images second</b>, and <b>one small video/GIF</b> last.</p>
-      <div class="callout"><b>Replacing assets:</b> Place your files in <code>/media/part1/</code>, <code>/media/part2/</code>, and <code>/media/part3/</code>. All visuals have a <em>lightbox</em> (click to enlarge) and captions.</div>
-    </section>
-
-    <section id="part1" class="card">
-      <h2>Part 1 — Selfie: wrong vs right method</h2>
-      <p class="lead">First <b>too close with wide angle</b>, then <b>backed up + zoomed</b> to keep the face size but with natural proportions. A third image can show another variation.</p>
-      <div class="grid cols-3">
-        <figure>
-          <img src="media/part1/selfie-close.jpg" alt="Close selfie with wide-angle distortion" onclick="openLightbox(this)"/>
-          <figcaption>Close (wide-angle)</figcaption>
-        </figure>
-        <figure>
-          <img src="media/part1/portrait-zoom.jpg" alt="Portrait from farther away with zoom" onclick="openLightbox(this)"/>
-          <figcaption>Backed up + zoom</figcaption>
-        </figure>
-        <figure>
-          <img src="media/part1/variation.jpg" alt="Third variation" onclick="openLightbox(this)"/>
-          <figcaption>Variation</figcaption>
-        </figure>
-      </div>
-      <div class="callout"><b>Why different?</b> Backing up changes projection geometry: rays are more parallel and depth relations (nose/ears) are less exaggerated. Zoom adjusts field of view without re-introducing distortion.</div>
-    </section>
-
-    <section id="part2" class="card">
-      <h2>Part 2 — Architectural perspective compression</h2>
-      <p class="lead">Take the same street/axis: first <b>zoomed from far</b> (flattened), then <b>wide angle up close</b> (strong convergence), while keeping apparent subject scale similar.</p>
-      <div class="grid cols-2">
-        <figure>
-          <img src="media/part2/street-tele.jpg" alt="Street telephoto flattened" onclick="openLightbox(this)"/>
-          <figcaption>Far + zoom (flattened)</figcaption>
-        </figure>
-        <figure>
-          <img src="media/part2/street-wide.jpg" alt="Street wide angle close-up" onclick="openLightbox(this)"/>
-          <figcaption>Close, wide (strong vanishing)</figcaption>
-        </figure>
-      </div>
-      <div class="callout"><b>Interpretation:</b> Distance modifies depth ratios. Telephoto “compresses” planes, wide angle “expands” them.</div>
-    </section>
-
-    <section id="part3" class="card">
-      <h2>Part 3 — <em>Dolly Zoom</em> (GIF/Video)</h2>
-      <p class="lead">Sequence of 4–8 shots while <b>backing up</b> and <b>zooming in</b> to keep subject size constant. Combined into a short GIF/video.</p>
-      <figure>
-        <video src="media/part3/dollyzoom.mp4" poster="media/part3/dolly-poster.jpg" autoplay muted loop playsinline controls></video>
-        <figcaption>Dolly zoom</figcaption>
-      </figure>
-      <div class="callout"><b>Tip:</b> export a GIF (&lt; 8 MB) for gallery and an MP4 (H.264) for smooth playback.</div>
-    </section>
-
-    <section class="card">
-      <h2>Technical Notes & GIF Creation</h2>
-      <div class="grid cols-2">
-        <div>
-          <h3>Gear & Settings (example)</h3>
-          <ul>
-            <li>Camera: smartphone or mirrorless; tripod recommended.</li>
-            <li>Mode: photo; lock exposure for dolly zoom sequence.</li>
-            <li>Focal: transition from wide to telephoto while backing up.</li>
-            <li>Framing: keep subject same size across shots.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Create a GIF (ImageMagick/FFmpeg)</h3>
-          <pre>magick convert -delay 8 -loop 0 media/part3/frames/*.jpg -resize 1280x720 -layers Optimize media/part3/dollyzoom.gif
-
-ffmpeg -framerate 12 -pattern_type glob -i 'media/part3/frames/*.jpg'   -vf scale=1280:-2 -c:v libx264 -pix_fmt yuv420p -crf 20 media/part3/dollyzoom.mp4</pre>
-        </div>
-      </div>
-    </section>
-
-    <section id="credits" class="card">
-      <h2>Credits & Method</h2>
-      <ul>
-        <li>Shooting & editing: <em>Your Name</em>.</li>
-        <li>Page created for CS180 Project 0. Hosted with GitHub Pages. Export as PDF with URL in header/footer (browser setting).</li>
-      </ul>
-    </section>
-
-    <footer>
-      &copy; 2025 · CS180 Project 0 — Your Name · Last updated: <span id="lastmod"></span>
-    </footer>
-  </main>
-
-  <div class="lightbox" id="lightbox">
-    <button class="close" onclick="closeLightbox()">✕</button>
-    <img class="lightbox-img" id="lightbox-img" alt="Lightbox" />
-  </div>
-
-  <script>
-    document.getElementById('lastmod').textContent = new Date(document.lastModified).toLocaleDateString('en-US');
-    const lb = document.getElementById('lightbox');
-    const lbimg = document.getElementById('lightbox-img');
-    function openLightbox(img){ lbimg.src = img.currentSrc || img.src; lb.classList.add('open'); }
-    function closeLightbox(){ lb.classList.remove('open'); lbimg.removeAttribute('src'); }
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
-  </script>
-
-  <!-- Project file structure recommended for GitHub Pages:
-  .
-  ├─ index.html
-  └─ media/
-     ├─ part1/
-     ├─ part2/
-     └─ part3/
-  -->
+  <section class="block">
+    <h2>Part 3</h2>
+    <p>Dolly zoom sequence as a short video or GIF.</p>
+    <figure>
+      <video src="media/part3/dollyzoom.mp4" poster="media/part3/dolly-poster.jpg" autoplay muted loop playsinline controls></video>
+    </figure>
+    <div class="note">Replace with dollyzoom.gif if preferred.</div>
+  </section>
+</main>
 </body>
 </html>
