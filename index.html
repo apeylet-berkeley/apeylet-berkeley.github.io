@@ -1,63 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CS180 Project 0</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#0b0c10;--text:#f4f6fb;--muted:#c9cfe1;--panel:#13151b}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial}
-  .wrap{max-width:1200px;margin:0 auto;padding:28px 18px}
-  h1{font-size:clamp(26px,3.4vw,40px);margin:0 0 4px}
-  .sub{color:var(--muted);margin:0 0 18px}
-  section{margin:24px 0}
-  .block{background:var(--panel);border-radius:14px;padding:18px}
-  h2{margin:0 0 10px;font-size:clamp(18px,2vw,24px)}
-  p{margin:8px 0 16px;color:var(--muted)}
-  .grid{display:grid;gap:12px}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .g2{grid-template-columns:repeat(2,1fr)}
-  @media(max-width:900px){.g3{grid-template-columns:1fr 1fr}}
-  @media(max-width:640px){.g3,.g2{grid-template-columns:1fr}}
-  figure{margin:0;border-radius:12px;overflow:hidden;background:#0f1117}
-  img,video{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover}
-  .note{font-size:14px;color:var(--muted);margin-top:6px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS180 Project 0</title>
+  <style>
+    body{margin:0;font-family:Arial, sans-serif;background:#111;color:#eee;line-height:1.5}
+    header{padding:20px;text-align:center;background:#222;font-size:22px;font-weight:bold}
+    main{max-width:1100px;margin:20px auto;padding:0 15px}
+    section{margin-bottom:40px}
+    h2{text-align:center;margin:15px 0;font-size:22px}
+    .grid{display:grid;gap:14px}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    figure{margin:0;overflow:hidden;border-radius:8px}
+    img,video{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover}
+    @media(max-width:800px){.cols-2,.cols-3{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-<main class="wrap">
-  <h1>CS180 Project 0</h1>
-  <p class="sub">Antoine Peylet · SID 3041919884</p>
+  <header>CS180 Project 0 – Antoine Peylet (SID: 3041919884)</header>
+  <main>
+    <section>
+      <h2>Part 1</h2>
+      <div class="grid cols-3">
+        <figure><img src="media/part1/selfie-close.jpg" alt="Close selfie"></figure>
+        <figure><img src="media/part1/portrait-zoom.jpg" alt="Zoomed portrait"></figure>
+        <figure><img src="media/part1/variation.jpg" alt="Variation"></figure>
+      </div>
+    </section>
 
-  <section class="block">
-    <h2>Part 1</h2>
-    <p>Close wide-angle vs backed-up with zoom. Three images.</p>
-    <div class="grid g3">
-      <figure><img src="media/part1/selfie-close.jpg" alt="Close wide-angle"></figure>
-      <figure><img src="media/part1/portrait-zoom.jpg" alt="Backed up + zoom"></figure>
-      <figure><img src="media/part1/variation.jpg" alt="Variation"></figure>
-    </div>
-  </section>
+    <section>
+      <h2>Part 2</h2>
+      <div class="grid cols-2">
+        <figure><img src="media/part2/street-tele.jpg" alt="Street telephoto"></figure>
+        <figure><img src="media/part2/street-wide.jpg" alt="Street wide angle"></figure>
+      </div>
+    </section>
 
-  <section class="block">
-    <h2>Part 2</h2>
-    <p>Far + zoom vs close + wide. Two images.</p>
-    <div class="grid g2">
-      <figure><img src="media/part2/street-tele.jpg" alt="Far + zoom"></figure>
-      <figure><img src="media/part2/street-wide.jpg" alt="Close + wide"></figure>
-    </div>
-  </section>
-
-  <section class="block">
-    <h2>Part 3</h2>
-    <p>Dolly zoom sequence as a short video or GIF.</p>
-    <figure>
-      <video src="media/part3/dollyzoom.mp4" poster="media/part3/dolly-poster.jpg" autoplay muted loop playsinline controls></video>
-    </figure>
-    <div class="note">Replace with dollyzoom.gif if preferred.</div>
-  </section>
-</main>
+    <section>
+      <h2>Part 3</h2>
+      <figure>
+        <video src="media/part3/dollyzoom.mp4" autoplay muted loop playsinline controls></video>
+      </figure>
+    </section>
+  </main>
 </body>
 </html>
